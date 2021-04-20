@@ -4,11 +4,10 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float speed = 5;
+    public float force = 10.0f;
     private Rigidbody2D rigidbody2D;
     private Animator animator;
     private float x;
-    private float y;
 
     // Start is called before the first frame update
     void Start()
@@ -21,7 +20,6 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         x = Input.GetAxis("Horizontal");
-        y = Input.GetAxis("Vertical");
 
 
         if (x > 0)
@@ -43,7 +41,8 @@ public class PlayerController : MonoBehaviour
 
     private void Run()
     {
-        Vector3 movement = new Vector3(x, y, 0);
-        rigidbody2D.transform.position += movement * speed * Time.deltaTime;
+        if (x > 0) rigidbody2D.AddForce(Vector2.right * force);
+        if (x < 0) rigidbody2D.AddForce(Vector2.left * force);
+        if (x < 0.001f && x > -0.001f) rigidbody2D.AddForce(new Vector2(0,0));
     }
 }
