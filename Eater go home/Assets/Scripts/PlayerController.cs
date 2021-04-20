@@ -1,10 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
     public float force = 10.0f;
+    public float consum = 0.2f;
+    public float recover = 0.1f;
+    public Slider energy;
     private Rigidbody2D rigidbody2D;
     private Animator animator;
     private float x;
@@ -14,6 +18,7 @@ public class PlayerController : MonoBehaviour
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        energy.value = 1;
     }
 
     // Update is called once per frame
@@ -36,13 +41,36 @@ public class PlayerController : MonoBehaviour
         {
             animator.SetBool("run", false);
         }
-        Run();
+        if(energy.value > 0)
+        {
+            Run();
+        }
+        else
+        {
+            if (x < 0.001f && x > -0.001f)
+            {
+                animator.SetBool("run", false);
+                energy.value += recover * Time.deltaTime;
+            }
+        }
     }
 
     private void Run()
     {
-        if (x > 0) rigidbody2D.AddForce(Vector2.right * force);
-        if (x < 0) rigidbody2D.AddForce(Vector2.left * force);
-        if (x < 0.001f && x > -0.001f) rigidbody2D.AddForce(new Vector2(0,0));
+        if (x > 0)
+        {
+            rigidbody2D.AddForce(Vector2.right * force);
+            energy.value -= consum * Time.deltaTime;
+        }
+        if (x < 0)
+        {
+            rigidbody2D.AddForce(Vector2.left * force);
+            energy.value -= consum * Time.deltaTime;
+        }
+        if (x < 0.001f && x > -0.001f)
+        {
+            rigidbody2D.AddForce(new Vector2(0, 0));
+            energy.value += recover * Time.deltaTime;
+        } 
     }
 }
