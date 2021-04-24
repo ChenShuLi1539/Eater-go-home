@@ -5,8 +5,8 @@ using UnityEngine;
 public class PlayerJump : MonoBehaviour
 {
 
-    public float jumpVelocity = 5f;
-    public float failMultiplier = 2f;
+    public float jumpVelocity = 10f;
+    public float failMultiplier = 2.5f;
     private Rigidbody2D rigidbody2D;
     private bool jumpRequest = false;
     private bool ground = false;
