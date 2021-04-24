@@ -5,6 +5,8 @@ using UnityEngine;
 public class WindZone : MonoBehaviour
 {
     public float targetMass = 1.0f;
+    public string direction = "down";
+    public float force = 99f;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,7 +20,25 @@ public class WindZone : MonoBehaviour
         {
             if (collision.gameObject.GetComponent<Rigidbody2D>().mass < targetMass)
             {
-                collision.gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.down * 99f, ForceMode2D.Impulse);
+                switch (direction)
+                {
+                    case "down": 
+                        collision.gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.down * force, ForceMode2D.Impulse);
+                        break;
+                    case "up":
+                        collision.gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.up * force, ForceMode2D.Impulse);
+                        break;
+                    case "left":
+                        collision.gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.left * force, ForceMode2D.Impulse);
+                        break;
+                    case "right":
+                        collision.gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.right * force, ForceMode2D.Impulse);
+                        break;
+                    default:
+                        collision.gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.down * force, ForceMode2D.Impulse);
+                        break;
+                }
+                
             }
         }
     }
