@@ -302,6 +302,7 @@
 "Assets/Scripts/Restart.cs"
 "Assets/Scripts/ReturnSuperio.cs"
 "Assets/Scripts/SelectLevel.cs"
+"Assets/Scripts/StandPlatform.cs"
 "Assets/Scripts/StartGame.cs"
 "Assets/Scripts/WindZone.cs"
 -langversion:8.0

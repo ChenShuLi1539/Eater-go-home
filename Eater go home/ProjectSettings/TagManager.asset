@@ -41,9 +41,6 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Player
-    uniqueID: 70789135
-    locked: 0
   - name: Fruit
     uniqueID: 2412131341
     locked: 0
@@ -55,4 +52,13 @@ TagManager:
     locked: 0
   - name: End
     uniqueID: 1557906757
+    locked: 0
+  - name: Platform
+    uniqueID: 2834010547
+    locked: 0
+  - name: Player
+    uniqueID: 70789135
+    locked: 0
+  - name: Spike
+    uniqueID: 2874627529
     locked: 0
